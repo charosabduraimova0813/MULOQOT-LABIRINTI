@@ -1,105 +1,100 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="uz">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Muloqot Labirinti</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cybersecurity Multiplayer 2.0</title>
 <style>
-:root{--bg:#071326;--panel:#10233e;--cyan:#43e6e0;--violet:#9b83ff;--gold:#ffd36e;--text:#eef6ff;--muted:#a9bad1;--danger:#ff7189}
-*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 50% 0,#18345b 0,#071326 58%);color:var(--text);font-family:Inter,system-ui,Segoe UI,Arial,sans-serif}
-button{font:inherit;cursor:pointer;border:0;border-radius:12px;padding:12px 17px;font-weight:750;color:#061526;background:linear-gradient(120deg,var(--cyan),#8ef4cf);box-shadow:0 8px 24px #28d9d455}
-button.secondary{background:#203958;color:var(--text);box-shadow:none;border:1px solid #45617e}
-header{max-width:1100px;margin:auto;padding:22px 22px 8px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.brand{font-weight:900;letter-spacing:.08em;color:var(--cyan);font-size:14px}.brand span{color:#fff}
-main{max-width:1100px;margin:auto;padding:18px 22px 36px}.hero{text-align:center;padding:20px 0 24px}.eyebrow{color:var(--gold);font-size:12px;letter-spacing:.2em;font-weight:800}.hero h1{font-size:clamp(32px,6vw,58px);margin:9px 0;background:linear-gradient(90deg,#fff,var(--cyan),#c1aaff);background-clip:text;color:transparent}.hero p{color:var(--muted);max-width:650px;margin:0 auto;line-height:1.6}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}.stat,.gamebox,.side,.modalbox{background:linear-gradient(145deg,#122945ee,#0b1c33ee);border:1px solid #315071;border-radius:18px;box-shadow:0 15px 40px #0003}.stat{padding:13px;text-align:center}.stat small{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.1em}.stat b{font-size:22px}
-.layout{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(230px,.75fr);gap:15px}.gamebox{padding:14px;min-width:0}.canvaswrap{position:relative;border-radius:13px;overflow:hidden;background:#06111f;border:1px solid #35516d}canvas{display:block;width:100%;height:auto;touch-action:none}.canvaslabel{position:absolute;top:12px;left:12px;background:#07182bdc;border:1px solid #42617d;border-radius:9px;padding:7px 10px;font-size:12px;color:var(--cyan)}
-.controls{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:13px}.keys{color:var(--muted);font-size:12px}.side{padding:18px}.side h3{margin:0 0 12px;color:var(--cyan)}.side p,.side li{color:var(--muted);font-size:13px;line-height:1.55}.side ul{padding-left:18px}.levelbar{height:8px;border-radius:10px;background:#263d59;overflow:hidden;margin:8px 0 15px}.levelbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--violet));transition:width .3s}
-#message{margin-top:12px;min-height:24px;color:var(--gold);font-size:13px;text-align:center}
-.overlay{position:fixed;inset:0;background:#020914c9;display:flex;align-items:center;justify-content:center;padding:18px;z-index:5}.modalbox{width:min(590px,100%);padding:25px;border-color:#4c6d91}.modalbox h2{margin:0 0 8px;font-size:25px}.modalbox p{color:var(--muted);line-height:1.55}.choices{display:grid;gap:9px;margin-top:17px}.choice{background:#183452;border:1px solid #41617f;color:var(--text);box-shadow:none;text-align:left;line-height:1.35}.choice:hover{border-color:var(--cyan);background:#204665}.feedback{margin-top:14px;font-size:14px;min-height:22px;color:var(--gold)}
-.hidden{display:none!important}.mobilepad{display:none;grid-template-columns:repeat(3,45px);gap:5px}.mobilepad button{padding:8px 0;border-radius:9px}
-footer{text-align:center;color:#7189a6;font-size:11px;padding:25px}
-@media(max-width:760px){.layout{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}header{padding:15px}.side{order:2}.mobilepad{display:grid}}
+:root{--bg:#07111f;--panel:#101f33;--panel2:#142942;--cyan:#38d9ff;--green:#5df2ad;--text:#eef7ff;--muted:#9bb0c8;--red:#ff647c}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 20% 0%,#123653 0,#07111f 42%,#050a13 100%);font-family:Arial,sans-serif;color:var(--text);min-height:100vh}
+.wrap{max-width:1000px;margin:auto;padding:22px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-weight:900;letter-spacing:1px;color:var(--cyan);font-size:clamp(20px,4vw,30px)}.tag{border:1px solid #27506c;padding:7px 11px;border-radius:20px;color:var(--green);font-size:12px}
+.card{background:linear-gradient(145deg,#12243a,#0b192a);border:1px solid #24425d;border-radius:18px;padding:20px;margin-top:18px;box-shadow:0 12px 35px #0005}
+h1,h2,h3{margin-top:0}h1{font-size:clamp(25px,5vw,40px)}p{color:var(--muted);line-height:1.55}
+input,textarea,button{font:inherit}input,textarea{width:100%;background:#071522;border:1px solid #31516b;color:white;border-radius:10px;padding:13px;margin:7px 0 12px}
+button{border:0;border-radius:10px;padding:12px 16px;background:var(--cyan);color:#04121d;font-weight:800;cursor:pointer;margin:4px}button.secondary{background:#203b55;color:white;border:1px solid #3b607e}button.danger{background:var(--red);color:#24040a}button:disabled{opacity:.45;cursor:not-allowed}
+.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1;min-width:180px}.hidden{display:none!important}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{background:#091827;padding:12px;border-radius:12px;text-align:center}.stat b{display:block;font-size:23px;color:var(--green);margin-top:5px}
+.timer{font-size:42px;font-weight:900;color:var(--green);text-align:center}.timer.low{color:var(--red)}.mission-no{color:var(--cyan);font-weight:800;font-size:13px;letter-spacing:1px}
+.option{display:block;width:100%;text-align:left;background:#18334d;color:white;border:1px solid #355a78;margin:8px 0;padding:14px}.option.selected{border-color:var(--green);background:#174438}
+#players{display:flex;gap:8px;flex-wrap:wrap}.player{background:#19324a;padding:8px 11px;border-radius:20px;font-size:13px}
+table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:10px;border-bottom:1px solid #29445e}th{color:var(--cyan)}
+.note{font-size:12px;color:#92a9bf}.pill{display:inline-block;background:#193a50;color:var(--cyan);padding:5px 9px;border-radius:20px;font-size:12px}
+@media(max-width:600px){.wrap{padding:13px}.card{padding:15px}.stats{grid-template-columns:1fr 1fr}.timer{font-size:34px}}
 </style>
 </head>
 <body>
-<header><div class="brand">PSYCHOLOGY <span>LAB</span></div><div style="font-size:12px;color:#a9bad1">INTERACTIVE LEARNING GAME</div></header>
-<main>
-<section class="hero"><div class="eyebrow">FIKRLA • TANLA • YO‘L TOP</div><h1>MULOQOT LABIRINTI</h1><p>Har bir bekatda psixologik vaziyat kutmoqda. To‘g‘ri qaror qabul qiling, yo‘llarni oching va labirintdan chiqing!</p></section>
-<div class="stats">
- <div class="stat"><small>Bosqich</small><b id="level">1 / 5</b></div><div class="stat"><small>Ball</small><b id="score">0</b></div>
- <div class="stat"><small>Vaqt</small><b id="time">00:00</b></div><div class="stat"><small>Topshiriq</small><b id="progress">0 / 3</b></div>
+<div class="wrap">
+ <div class="top"><div class="logo">⌁ CYBERSECURITY <span style="color:white">MULTIPLAYER</span></div><div class="tag">VERSION 2.0 · 10 MISSIONS</div></div>
+
+ <section id="home" class="card">
+  <h1>Think smart. Stay secure.</h1>
+  <p>10 ta vaqtli missiya, yashirin Hacker va jonli reyting. Xona yarating yoki mavjud xonaga qo‘shiling.</p>
+  <div class="row"><div><label>O‘yinchi ismi</label><input id="name" maxlength="18" placeholder="Ismingiz"></div><div><label>Xona kodi</label><input id="roomInput" maxlength="8" placeholder="Masalan: CYBER7"></div></div>
+  <div class="row"><button id="createBtn">Yangi xona yaratish</button><button id="joinBtn" class="secondary">Xonaga qo‘shilish</button></div>
+  <p class="note">Eslatma: onlayn ulanish uchun internet va PeerJS xizmatiga ulanish kerak. Xona yaratuvchi o‘yinni boshqaradi.</p>
+  <div id="connection" class="note"></div>
+ </section>
+
+ <section id="lobby" class="card hidden">
+  <div class="row" style="align-items:center"><div><span class="pill">O‘YIN LOBBYSI</span><h2>Xona: <span id="roomCode"></span></h2></div><div><button id="copyBtn" class="secondary">Xona kodini nusxalash</button></div></div>
+  <p>Do‘stlaringizga xona kodini yuboring. Hamma qo‘shilgach, boshlovchi o‘yinni boshlaydi.</p>
+  <h3>O‘yinchilar</h3><div id="players"></div><p id="roleInfo" class="note"></p>
+  <button id="startBtn">O‘yinni boshlash</button><button id="leaveBtn" class="secondary">Chiqish</button>
+ </section>
+
+ <section id="game" class="hidden">
+  <div class="card">
+   <div class="stats"><div class="stat">MISSIYA<b id="missionCount">1 / 10</b></div><div class="stat">BALL<b id="myScore">0</b></div><div class="stat">O‘YINCHI<b id="myName">—</b></div></div>
+   <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px"><span class="mission-no" id="missionType">MISSION 01</span><span class="pill" id="missionTitle">Password Challenge</span></div>
+   <div class="timer" id="timer">00:45</div>
+   <h2 id="question"></h2><p id="description"></p>
+   <div id="answerArea"></div>
+   <button id="submitBtn">Javobni yuborish</button><p id="feedback" class="note"></p>
+  </div>
+  <div class="card"><div class="row"><div><h3>Jonli reyting</h3><div id="ranking"></div></div><div><h3>O‘yinchilar</h3><div id="playersGame"></div></div></div></div>
+ </section>
+
+ <section id="result" class="card hidden"><h1>🏆 O‘yin yakunlandi!</h1><h2 id="winner"></h2><div id="finalRanking"></div><button onclick="location.reload()">Yangi o‘yin</button></section>
 </div>
-<div class="layout">
- <section class="gamebox"><div class="canvaswrap"><canvas id="maze" width="720" height="520"></canvas><div class="canvaslabel" id="maplabel">1-BOSQICH · BOSHLANISH</div></div>
- <div class="controls"><div class="keys">Harakat: <b>W A S D</b> yoki <b>← ↑ → ↓</b></div><div class="mobilepad"><span></span><button data-dir="up">▲</button><span></span><button data-dir="left">◀</button><button data-dir="down">▼</button><button data-dir="right">▶</button></div><button class="secondary" id="restart">Qayta boshlash</button></div><div id="message">Yashil belgili bekatga boring.</div></section>
- <aside class="side"><h3>MISSIYA</h3><p>Labirintdagi uchta nazorat nuqtasida savollarga javob bering. Har bir to‘g‘ri javob keyingi yo‘lni ochadi.</p><div class="levelbar"><i id="bar"></i></div><ul><li>To‘g‘ri javob: <b style="color:var(--cyan)">+100 ball</b></li><li>Noto‘g‘ri javob: <b style="color:var(--danger)">−20 ball</b></li><li>Har savol uchun 20 soniya</li><li>5 bosqich, jami 15 savol</li></ul><p><b style="color:var(--gold)">Maslahat:</b> shoshilmang. Vaziyatdagi asosiy psixologik belgini aniqlang.</p></aside>
-</div>
-</main>
-<footer>MULOQOT LABIRINTI · UMUMIY PSIXOLOGIYA</footer>
-<div class="overlay" id="intro"><div class="modalbox"><div class="eyebrow">O‘YIN QOIDALARI</div><h2>Labirintga xush kelibsiz!</h2><p>WASD yoki yo‘nalish tugmalari yordamida yuring. Har bir bosqichda uchta savol bekati bor. Bekatga yetib borganda savol ochiladi. Barcha bosqichlarni tugatib, chiqish darvozasiga yeting.</p><button id="start">O‘yinni boshlash</button></div></div>
-<div class="overlay hidden" id="question"><div class="modalbox"><div class="eyebrow" id="qtag">NAZORAT NUQTASI</div><h2 id="qtitle">Savol</h2><p id="qtext"></p><div class="choices" id="choices"></div><div class="feedback" id="feedback"></div></div></div>
-<div class="overlay hidden" id="finish"><div class="modalbox"><div class="eyebrow">MISSIYA YAKUNLANDI</div><h2>Tabriklaymiz! 🎉</h2><p id="finaltext"></p><button id="again">Qayta o‘ynash</button></div></div>
+<script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
 <script>
+const missions=[
+ {title:"Password Challenge",time:45,q:"Yangi akkaunt ochyapsiz. Qaysi parol yaratish yondashuvi xavfsizroq?",d:"Javob variantini tanlang.",opts:["Ism va tug‘ilgan yilni birlashtirish","Har bir akkaunt uchun uzun va noyob parol yoki passphrase ishlatish","Barcha saytlarda bitta qulay paroldan foydalanish"],correct:1,pts:100},
+ {title:"Phishing Alert",time:30,q:"Sizga bank nomidan kelgan xabarda havolani bosib, akkauntni darhol tasdiqlash so‘raldi. Eng to‘g‘ri harakat nima?",d:"Bir javobni tanlang.",opts:["Havolani darhol ochish","Xabarga javob berib parolni so‘rash","Havolani bosmasdan, bankning rasmiy ilovasi yoki raqami orqali tekshirish"],correct:2,pts:100},
+ {title:"Digital Footprint",time:60,q:"Notanish tanlov sayti sovrin berish uchun pasport ma’lumoti, manzil va telefon raqamingizni so‘rayapti. Nima qilasiz?",d:"O‘z qaroringizni qisqa yozing. Javob xavfsizlik nuqtayi nazaridan tekshiriladi.",text:true,keywords:["tekshir","bermay","ishonch","rasmiy","shaxsiy","ma'lumot","ma’lumot"],pts:120},
+ {title:"Hacker's Identity",time:20,q:"Sizningcha, o‘yinchilar orasida kim yashirin Hacker?",d:"Ro‘yxatdan bitta o‘yinchini tanlang. Hacker roli tasodifiy belgilanadi.",guess:true,pts:100},
+ {title:"Firewall Defense",time:45,q:"Kompyuteringizda noma’lum dastur tarmoqqa kirishga ruxsat so‘rayapti. Qanday yo‘l tutasiz?",d:"Eng xavfsiz qarorni tanlang.",opts:["Ruxsat beraman, nima bo‘lishini ko‘raman","Dastur manbasini tekshiraman va zarur bo‘lmasa ruxsat bermayman","Ogohlantirishni o‘chirib qo‘yaman"],correct:1,pts:100},
+ {title:"Double Protection",time:30,q:"Ikki bosqichli autentifikatsiyaning asosiy foydasi nima?",d:"Bir javobni tanlang.",opts:["Internet tezligini oshiradi","Parol oshkor bo‘lsa ham qo‘shimcha himoya qatlamini beradi","Parolni eslab qolish shart emas"],correct:1,pts:100},
+ {title:"Data Breach",time:45,q:"Siz foydalanadigan servis ma’lumotlar sizib chiqqani haqida xabar berdi. Birinchi navbatda nima qilishingiz kerak?",d:"Bir javobni tanlang.",opts:["Hech narsa qilmaslik","O‘sha parol ishlatilgan boshqa akkauntlarda ham parolni almashtirish va 2FA yoqish","Xabarni hammaga yuborish"],correct:1,pts:100},
+ {title:"Cyber Detective",time:60,q:"Bir akkauntga siz kirmagan vaqtda yangi qurilmadan kirilgan. Kirish joyi ham sizga notanish. Qaysi belgilarni tekshirib, qanday choralar ko‘rasiz?",d:"Qisqa yozma javob bering.",text:true,keywords:["sessiya","chiq","parol","almashtir","2fa","qurilma","tekshir"],pts:120},
+ {title:"Time Bomb",time:30,q:"30 soniya ichida tanlang: telefoningiz yo‘qoldi va unda muhim akkauntlaringiz ochiq qolgan. Eng muhim birinchi qadam qaysi?",d:"Vaqt tugashidan oldin tanlang.",opts:["Telefonni topilishini kutish","Muhim akkauntlarni boshqa ishonchli qurilmadan himoyalash, sessiyalarni tugatish va SIM bo‘yicha operatorga murojaat qilish","Ijtimoiy tarmoqqa telefon yo‘qolgani haqida yozish"],correct:1,pts:150},
+ {title:"Final Boss",time:90,q:"Siz jamoa sardorisiz. Jamoaga soxta fayl, shubhali havola va parolni qayta ishlatish xavfi haqida ogohlantirish berishingiz kerak. Eng muhim 3 ta qoidani yozing.",d:"Uchta aniq xavfsizlik tavsiyasini yozing.",text:true,keywords:["havola","parol","tekshir","2fa","yangila","zaxira","fayl","manba"],pts:200}
+];
+let peer=null,host=false,hostId=null,room="",myId="",myName="",players={},conns=[],missionIndex=0,remaining=0,tick=null,answered=false,role="",theft=2,gameStarted=false;
 const $=id=>document.getElementById(id);
-const questions=[
-[
-["O‘qituvchi yangi mavzuni tushuntirib, bilim almashmoqda. Muloqotning qaysi tomoni asosiy?",["Kommunikativ","Interaktiv","Pertseptiv","Proksemik"],0,"Kommunikativ tomon axborot, fikr va bilim almashishni anglatadi."],
-["Talabalar guruh loyihasida vazifalarni o‘zaro taqsimlamoqda. Bu qaysi jarayon?",["Pertseptsiya","Interaktsiya","Refleksiya","Empatiya"],1,"Interaktiv tomon birgalikdagi harakat va o‘zaro ta’sirni tashkil etadi."],
-["Suhbatdoshning gapini tushunish uchun uning tajribasini o‘z o‘rningizga qo‘yib ko‘rdingiz. Bu nima?",["Atributsiya","Stereotiplash","Identifikatsiya","Oreol effekti"],2,"Identifikatsiya — o‘zini boshqa inson o‘rniga qo‘yib, uni tushunishga urinish."]
-],
-[
-["Talaba «Hammasi joyida» dedi, ammo ovozi titrab, ko‘zini olib qochdi. Qaysi holat kuzatilmoqda?",["Semantik to‘siq","Verbal va noverbal signallar ziddiyati","Murosa","Faol tinglash"],1,"So‘z va tana/ovoz signallari bir-biriga mos kelmayapti."],
-["Suhbatda ovoz balandligi, nutq tezligi va pauzalar qaysi vositaga kiradi?",["Kinesika","Proksemika","Paralingvistika","Taktilika"],2,"Paralingvistika ovozning ohangi, balandligi, tezligi va pauzalarni o‘rganadi."],
-["Kursdoshingiz bilan suhbatda taxminan 70 sm masofa saqladingiz. E. Xoll tasnifida bu qaysi zona?",["Intim","Shaxsiy","Ijtimoiy","Ommaviy"],1,"45–120 sm shaxsiy muloqot zonasiga kiradi."]
-],
-[
-["Suhbatdoshingiz ishlatgan atamani siz boshqa ma’noda tushundingiz. Bu qanday to‘siq?",["Fonetik","Semantik","Emotsional","Stilistik"],1,"Semantik to‘siq so‘z va atamalarning turlicha tushunilishidan kelib chiqadi."],
-["Ma’ruzachi auditoriyaga juda tez va noaniq talaffuz bilan gapirmoqda. Qaysi to‘siq kuchayadi?",["Fonetik","Mantiqiy","Madaniy-ijtimoiy","Emotsional"],0,"Fonetik to‘siq talaffuz, nutq tezligi va ovoz aniqligi bilan bog‘liq."],
-["Talaba jahli chiqqani uchun suhbatdoshini tinglay olmayapti. Bu qaysi to‘siq?",["Stilistik","Semantik","Emotsional","Fonetik"],2,"Kuchli hissiyotlar tinglash va tushunishga xalaqit beradi."]
-],
-[
-["O‘qituvchi faqat bitta ijobiy belgiga qarab talabani barcha jihatdan a’lo deb baholadi. Bu nima?",["Proyeksiya","Oreol effekti","Refleksiya","Atributsiya"],1,"Oreol effekti — bitta belgi asosida shaxs haqida umumiy ijobiy yoki salbiy baho shakllanishi."],
-["Bir talaba kechikdi. Siz sababini bilmasdan «u mas’uliyatsiz» deb xulosa qildingiz. Bu qaysi xato?",["Fundamental atributsiya xatosi","Empatiya","Identifikatsiya","Parafraz"],0,"Boshqaning xulqini vaziyatni hisobga olmasdan shaxsiyati bilan izohlash atributsiya xatosidir."],
-["O‘qituvchi bir guruhni oldindan qobiliyatli deb kutadi va ularga ko‘proq imkoniyat beradi. Bu qaysi effektga misol?",["Oreol","Pigmalion","Proyeksiya","Birlamchilik"],1,"Pigmalion effektida kutishlar boshqa insonning xulqiga ta’sir qilishi mumkin."]
-],
-[
-["Ikki tomon ham o‘z manfaatini va suhbatdosh manfaatini to‘liq hisobga olib, birgalikda yechim izlaydi. Bu qaysi uslub?",["Raqobat","Chetlanish","Hamkorlik","Moslashish"],2,"Hamkorlik ikki tomon manfaatini qondiruvchi yechimni birgalikda izlashdir."],
-["Guruhdosh: «Sen doim ishni kech topshirasan!» dedi. Buni «Men-xabar»ga aylantirishning eng maqbul shakli qaysi?",["Sen yana kech qolding!","Ish kechiksa, men xavotirlanaman, chunki umumiy muddatga ulgurishimiz kerak.","Bu faqat sening aybing.","Men bu haqda gapirmayman."],1,"Men-xabar vaziyat, his-tuyg‘u, sabab va istakni ayblovsiz ifodalaydi."],
-["Suhbatdoshingiz fikrini o‘z so‘zlaringiz bilan qaytarib, to‘g‘ri tushunganingizni tekshiryapsiz. Bu qanday texnika?",["Parafraz","Raqobat","Stereotiplash","Chetlanish"],0,"Parafraz — suhbatdosh fikrini o‘z so‘zlaringiz bilan qaytarib, tushunganingizni tekshirish."]
-]
-];
-let level=0,done=0,score=0,seconds=0,started=false,locked=false,player={x:1,y:1},timer=null,questionTimer=null,qtime=20;
-const maps=[
-["###########","#S..#....E#","#.#.#.##..#","#.#...#...#","#.###.#.#.#","#...#...#.#","###.###.#.#","#...#...#.#","#.#...#...#","#....#....#","###########"],
-["###########","#S....#...#","###.#.#.#.#","#...#...#.#","#.###...#.#","#...###.#.#","#.#...#...#","#.#.#####.#","#.#.......#","#.....#..E#","###########"],
-["###########","#S..#.....#","#.#.#.###.#","#.#...#...#","#.#####.#.#","#.....#.#.#","###.#.#.#.#","#...#...#.#","#.#####.#.#","#.......#E#","###########"],
-["###########","#S......#.#","#####.#.#.#","#...#.#...#","#.#.#.###.#","#.#...#...#","#.#####.###","#.....#...#","###.#.###.#","#...#....E#","###########"],
-["###########","#S....#...#","###.#.#.#.#","#...#...#.#","#.#####.#.#","#.....#.#.#","#.###.#.#.#","#...#.#...#.","#.#.#.###.#","#...#....E#","###########"]
-];
-let checkpoints=[];
-function buildMap(){let m=maps[level].map(r=>r.split(""));checkpoints=[];let spots=[[3,1],[5,5],[8,9]];spots.forEach((p,i)=>{checkpoints.push({x:p[0],y:p[1],i,done:false})});return m}
-let grid=buildMap();
-function draw(){const c=$("maze"),ctx=c.getContext("2d");ctx.clearRect(0,0,720,520);let cell=44,ox=118,oy=18;
-ctx.fillStyle="#071321";ctx.fillRect(0,0,720,520);
-for(let y=0;y<11;y++)for(let x=0;x<11;x++){let wall=grid[y][x]==="#";let px=ox+x*cell,py=oy+y*cell;
-if(wall){ctx.fillStyle="#203d5c";ctx.fillRect(px,py,cell-2,cell-2);ctx.fillStyle="#315878";ctx.fillRect(px+3,py+3,cell-8,5);ctx.fillStyle="#122941";ctx.fillRect(px+3,py+10,cell-8,cell-14)}
-else{ctx.fillStyle=(x+y)%2?"#102942":"#0d2339";ctx.fillRect(px,py,cell-2,cell-2);ctx.strokeStyle="#21415e";ctx.strokeRect(px,py,cell-2,cell-2)}}
-checkpoints.forEach(p=>{if(!p.done){let px=ox+p.x*cell+21,py=oy+p.y*cell+21;ctx.beginPath();ctx.arc(px,py,13,0,Math.PI*2);ctx.fillStyle="#ffd36e";ctx.shadowColor="#ffd36e";ctx.shadowBlur=15;ctx.fill();ctx.shadowBlur=0;ctx.fillStyle="#17243a";ctx.font="bold 13px Arial";ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText("?",px,py)}});
-let ex=9,ey=1;if(level===1){ex=9;ey=9}else if(level>=2){ex=9;ey=9}
-ctx.fillStyle="#43e6e0";ctx.shadowColor="#43e6e0";ctx.shadowBlur=18;ctx.fillRect(ox+ex*cell+10,oy+ey*cell+10,22,22);ctx.shadowBlur=0;
-let px=ox+player.x*cell+21,py=oy+player.y*cell+21;ctx.beginPath();ctx.arc(px,py,13,0,Math.PI*2);ctx.fillStyle="#9b83ff";ctx.shadowColor="#9b83ff";ctx.shadowBlur=18;ctx.fill();ctx.shadowBlur=0;ctx.fillStyle="#fff";ctx.beginPath();ctx.arc(px-4,py-3,2,0,7);ctx.arc(px+4,py-3,2,0,7);ctx.fill();
-}
-function update(){ $("level").textContent=(level+1)+" / 5";$("score").textContent=score;$("progress").textContent=done+" / 15";$("bar").style.width=(done/15*100)+"%";$("maplabel").textContent=(level+1)+"-BOSQICH · "+(done%3+1)+"-NAZORAT NUQTASI"}
-function move(dx,dy){if(!started||locked)return;let nx=player.x+dx,ny=player.y+dy;if(!grid[ny]||grid[ny][nx]==="#")return;player={x:nx,y:ny};draw();checkSpot()}
-function checkSpot(){let p=checkpoints.find(p=>!p.done&&p.x===player.x&&p.y===player.y);if(p)ask(p);if(grid[player.y][player.x]==="E"|| (player.x===9&&player.y===(level===0?1:9)&&checkpoints.every(p=>p.done)))nextLevel()}
-function ask(p){locked=true;let q=questions[level][p.i];qtime=20;$("qtag").textContent=`${level+1}-BOSQICH · ${p.i+1}-SAVOL`; $("qtitle").textContent="To‘g‘ri qarorni toping";$("qtext").textContent=q[0];$("feedback").textContent="";$("choices").innerHTML="";q[1].forEach((a,i)=>{let b=document.createElement("button");b.className="choice";b.textContent=String.fromCharCode(65+i)+") "+a;b.onclick=()=>answer(i,q,p);$("choices").appendChild(b)});$("question").classList.remove("hidden");questionTimer=setTimeout(()=>answer(-1,q,p),20000)}
-function answer(i,q,p){if(!locked)return;clearTimeout(questionTimer);let ok=i===q[2];if(ok){score+=100;$("feedback").textContent="To‘g‘ri! "+q[3];$("feedback").style.color="var(--cyan)"}else{score=Math.max(0,score-20);$("feedback").textContent=(i===-1?"Vaqt tugadi. ":"Noto‘g‘ri. ")+q[3];$("feedback").style.color="var(--danger)"}p.done=true;done++;update();setTimeout(()=>{$("question").classList.add("hidden");locked=false;$("message").textContent=ok?"Yo‘l davom etmoqda. Keyingi bekatni toping.":"Jarima qo‘llandi. Keyingi bekatga yo‘l oling.";draw();if(done===15)nextLevel()},2200)}
-function nextLevel(){if(locked)return;if(level<4){level++;grid=buildMap();player={x:1,y:1};$("message").textContent="Yangi bosqich! Uchta nazorat nuqtasini toping.";update();draw()}else{finish()}}
-function finish(){started=false;clearInterval(timer);$("finaltext").textContent=`Siz 5 bosqichni yakunladingiz. Natijangiz: ${score} ball. Sarflangan vaqt: ${$("time").textContent}. Muloqot psixologiyasi bo‘yicha bilimlaringizni sinab ko‘rdingiz!`;$("finish").classList.remove("hidden")}
-function start(){level=0;done=0;score=0;seconds=0;started=true;locked=false;grid=buildMap();player={x:1,y:1};update();draw();$("intro").classList.add("hidden");$("finish").classList.add("hidden");$("time").textContent="00:00";clearInterval(timer);timer=setInterval(()=>{seconds++;$("time").textContent=String(Math.floor(seconds/60)).padStart(2,"0")+":"+String(seconds%60).padStart(2,"0")},1000)}
-document.addEventListener("keydown",e=>{let k=e.key.toLowerCase(),d={arrowup:[0,-1],w:[0,-1],arrowdown:[0,1],s:[0,1],arrowleft:[-1,0],a:[-1,0],arrowright:[1,0],d:[1,0]}[k];if(d){e.preventDefault();move(...d)}});
-document.querySelectorAll("[data-dir]").forEach(b=>b.onclick=()=>{let d={up:[0,-1],down:[0,1],left:[-1,0],right:[1,0]}[b.dataset.dir];move(...d)});
-$("start").onclick=start;$("again").onclick=start;$("restart").onclick=()=>{$("intro").classList.remove("hidden");started=false;clearInterval(timer)};draw();update();
+function show(id){["home","lobby","game","result"].forEach(x=>$(x).classList.toggle("hidden",x!==id))}
+function setStatus(t){$("connection").textContent=t}
+function safeName(){return $("name").value.trim().slice(0,18)||"Player"}
+function makePeer(){return new Promise((resolve,reject)=>{peer=new Peer();peer.on("open",id=>resolve(id));peer.on("error",reject)})}
+function sendAll(msg){if(host){conns.forEach(c=>{if(c.open)c.send(msg)})}}
+function stateMsg(){return {type:"state",room,players,missionIndex,gameStarted,remaining}}
+function renderPlayers(){let html=Object.values(players).map(p=>`<span class="player">${esc(p.name)} · ${p.score||0} ball</span>`).join("");$("players").innerHTML=html||"Hozircha hech kim yo‘q";$("playersGame").innerHTML=html}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function ranking(){let arr=Object.values(players).sort((a,b)=>(b.score||0)-(a.score||0));$("ranking").innerHTML="<table><tr><th>O‘yinchi</th><th>Ball</th></tr>"+arr.map(p=>`<tr><td>${esc(p.name)} ${p.role==="hacker"?"🕶":""}</td><td>${p.score||0}</td></tr>`).join("")+"</table>";renderPlayers()}
+async function createRoom(){myName=safeName();host=true;setStatus("Xona yaratilmoqda...");try{myId=await makePeer();room=myId.slice(-6).toUpperCase();hostId=myId;players[myId]={id:myId,name:myName,score:0};$("roomCode").textContent=room;$("roleInfo").textContent="Siz boshlovchisiz. Boshqa o‘yinchilar xona kodini kiritsin.";peer.on("connection",c=>{conns.push(c);c.on("open",()=>{});c.on("data",m=>handleHostMessage(c,m));c.on("close",()=>{delete players[c.peer];sendAll(stateMsg());renderPlayers()})});show("lobby");renderPlayers()}catch(e){setStatus("Ulanishda xatolik. Internetni tekshiring va qayta urinib ko‘ring.")}}
+async function joinRoom(){myName=safeName();room=$("roomInput").value.trim().toUpperCase();if(!room){setStatus("Xona kodini kiriting.");return}host=false;setStatus("Xonaga ulanmoqda...");try{myId=await makePeer();hostId=null;peer.on("connection",()=>{}); // PeerJS client connects to host's Peer ID; room code is suffix and host id lookup is not available in PeerJS.
+setStatus("Bu demo versiyada xona yaratuvchining to‘liq Peer ID raqami kerak. Xona yaratuvchidan ID ni ham so‘rang.");}catch(e){setStatus("Ulanishda xatolik. Qayta urinib ko‘ring.")}}
+function handleHostMessage(c,m){if(m.type==="join"){players[c.peer]={id:c.peer,name:m.name,score:0};c.send({type:"joined",id:c.peer,room,players,gameStarted,missionIndex});sendAll(stateMsg());renderPlayers()}if(m.type==="answer"){let p=players[c.peer];if(!p||m.mission!==missionIndex)return;let add=0;if(m.guess){if(m.guess===Object.values(players).find(x=>x.role==="hacker")?.id)add=missions[3].pts}else if(m.correct)add=m.points||100;p.score=(p.score||0)+add;sendAll({type:"scores",players});renderPlayers()}if(m.type==="steal"){let h=players[c.peer];if(h?.role==="hacker"&&h.theft>0&&players[m.target]){players[m.target].score=Math.max(0,(players[m.target].score||0)-50);h.theft--;h.score=(h.score||0)+50;sendAll({type:"scores",players})}}}
+function startGame(){if(!host)return;let ids=Object.keys(players);if(ids.length<2){alert("Hozircha faqat siz borsiz. Sinov uchun kamida 2 o‘yinchi kerak.");return}let hacker=ids[Math.floor(Math.random()*ids.length)];ids.forEach(id=>{players[id].role=id===hacker?"hacker":"player";players[id].theft=2});gameStarted=true;missionIndex=0;sendAll({type:"start",players,missionIndex});role=players[myId].role;show("game");beginMission()}
+function beginMission(){if(missionIndex>=missions.length){finish();return}answered=false;let m=missions[missionIndex];remaining=m.time;$("missionCount").textContent=(missionIndex+1)+" / 10";$("missionType").textContent="MISSION "+String(missionIndex+1).padStart(2,"0");$("missionTitle").textContent=m.title;$("question").textContent=m.q;$("description").textContent=m.d;$("feedback").textContent="";$("myName").textContent=myName;$("myScore").textContent=players[myId]?.score||0;
+let area=$("answerArea");area.innerHTML="";if(m.opts){m.opts.forEach((o,i)=>{let b=document.createElement("button");b.className="option";b.textContent=String.fromCharCode(65+i)+". "+o;b.onclick=()=>{if(answered)return;area.querySelectorAll("button").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");area.dataset.choice=i};area.appendChild(b)})}else if(m.text){let t=document.createElement("textarea");t.id="written";t.rows=4;t.placeholder="Javobingizni shu yerga yozing...";area.appendChild(t)}else if(m.guess){Object.values(players).filter(p=>p.id!==myId).forEach(p=>{let b=document.createElement("button");b.className="option";b.textContent=p.name;b.onclick=()=>{if(answered)return;area.querySelectorAll("button").forEach(x=>x.classList.remove("selected"));b.classList.add("selected");area.dataset.guess=p.id};area.appendChild(b)})}
+$("submitBtn").disabled=false;$("submitBtn").textContent="Javobni yuborish";drawTimer();clearInterval(tick);tick=setInterval(()=>{remaining--;drawTimer();if(remaining<=0){clearInterval(tick);if(!answered)submit(true)}},1000)}
+function drawTimer(){$("timer").textContent="00:"+String(Math.max(0,remaining)).padStart(2,"0");$("timer").classList.toggle("low",remaining<=10)}
+function submit(expired=false){if(answered)return;let m=missions[missionIndex],area=$("answerArea"),correct=false,guess=null,answer="";if(m.opts){let v=area.dataset.choice;if(v===undefined&&!expired){$("feedback").textContent="Avval javobni tanlang.";return}correct=Number(v)===m.correct}else if(m.guess){guess=area.dataset.guess;if(!guess&&!expired){$("feedback").textContent="Bitta o‘yinchini tanlang.";return}}else{answer=$("written")?.value.trim()||"";if(!answer&&!expired){$("feedback").textContent="Javob yozing.";return}let low=answer.toLowerCase();correct=m.keywords.some(k=>low.includes(k))}
+answered=true;$("submitBtn").disabled=true;let add=correct?m.pts:0;if(host){let p=players[myId];p.score=(p.score||0)+add;if(guess&&players[guess]?.role==="hacker")p.score+=m.pts;sendAll({type:"scores",players});$("feedback").textContent=expired?"Vaqt tugadi.":(correct?"Javob qabul qilindi! +"+add+" ball":"Javob qabul qilindi.");$("myScore").textContent=p.score;ranking()}else{conns[0]?.send({type:"answer",mission:missionIndex,correct,guess,points:m.pts,answer})}if(host){setTimeout(nextMission,1300)}else{setTimeout(()=>{$("feedback").textContent="Javob yuborildi. Boshlovchi keyingi missiyani boshlashini kuting."},1000)}}
+function nextMission(){if(!host)return;missionIndex++;if(missionIndex>=10){sendAll({type:"finish",players});finish()}else{sendAll({type:"mission",missionIndex,players});beginMission()}}
+function finish(){clearInterval(tick);let arr=Object.values(players).sort((a,b)=>b.score-a.score);show("result");$("winner").textContent=arr[0]?arr[0].name+" — g‘olib!":"";$("finalRanking").innerHTML="<table><tr><th>O‘rin</th><th>O‘yinchi</th><th>Ball</th></tr>"+arr.map((p,i)=>`<tr><td>${i+1}</td><td>${esc(p.name)}</td><td>${p.score||0}</td></tr>`).join("")+"</table>"}
+$("createBtn").onclick=createRoom;$("joinBtn").onclick=joinRoom;$("startBtn").onclick=startGame;$("submitBtn").onclick=()=>submit(false);$("copyBtn").onclick=()=>navigator.clipboard?.writeText(room).then(()=>$("copyBtn").textContent="Nusxalandi!");$("leaveBtn").onclick=()=>location.reload();
 </script>
 </body></html>
